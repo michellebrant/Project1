@@ -1,0 +1,48 @@
+body{
+  background-color: black;
+
+}
+
+.insideout {
+width: 400px;
+height: 200px;
+position: absolute;
+margin-top: 500px;
+margin-left: 700px;
+}
+
+#message{
+  position: absolute;
+  height: 100px;
+  width: 600px;
+  bottom: 20px;
+  left: 60px;
+  border-radius: 15px;
+  background-color: #efefef;
+  text-align: center;
+}
+
+p{
+  color: black;
+}
+.regmemory{
+background-image: url(regmem.png);
+padding: 10px;
+position: absolute;
+background-size: cover;
+background-position: center;
+width: 75px;
+height: 75px;
+background-repeat: no-repeat;
+}
+
+.regmemory{
+background-image: url(coremem.png);
+padding: 10px;
+position: absolute;
+background-size: cover;
+background-position: center;
+width: 75px;
+height: 75px;
+background-repeat: no-repeat;
+}
