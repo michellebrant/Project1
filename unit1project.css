@@ -1,6 +1,7 @@
 body{
   background-color: black;
 
+
 }
 
 .insideout {
@@ -22,11 +23,22 @@ margin-left: 700px;
   text-align: center;
 }
 
+.score{
+  float: right;
+  height: 200px;
+  width: 200px;
+  float: right;
+  top: 10px;
+  border-radius: 15px;
+  background-color: #efefef;
+  text-align: center;
+}
 p{
   color: black;
+    font-family: "Helvetica", "Arial", sans;
 }
 .regmemory{
-background-image: url(regmem.png);
+background-image: url(regmempurp.png);
 padding: 10px;
 position: absolute;
 background-size: cover;
@@ -36,7 +48,7 @@ height: 75px;
 background-repeat: no-repeat;
 }
 
-.regmemory{
+.corememory{
 background-image: url(coremem.png);
 padding: 10px;
 position: absolute;
