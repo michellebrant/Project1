@@ -10,7 +10,7 @@ start = $('<button class="start">Start the Game!</button>')
 $('.rules').on("click", function() {
     $('.first').remove();
     $('.rules').remove();
-    message.append('<p>Help Riley save her memories! Collect points by clicking on memories before they fall into the memory dump. Purple memory orbs are regular memories worth 10 points. The yellow memories are core memories- loose more than three, and game over!</p>')
+    message.append('<p class="message_text">Help Riley save her memories! Collect points by clicking on memories before they fall into the memory dump. Purple memory orbs are regular memories worth 10 points. The yellow memories are core memories- loose more than three, and game over!</p>')
     message.append(start)
 })
 
@@ -24,18 +24,10 @@ start.on("click", function() {
 
 function createMems() {
 
-    setInterval(function() {
+    memoryIntervalID = setInterval(function() {
         regmemory = $('<div class="regmemory"></div>')
         body.append(regmemory);
         regmemory.css("left", Math.random() * window.innerWidth);
-        //why is this delayed?
-        $('.regmemory').each(function(i) {
-            var top = $(this).css('top');
-            $(this).css('top')
-            if (top === '600px') {
-                console.log('you loose!');
-            } else {}
-        });
         regmemory.animate({
             top: '600'
 
@@ -52,21 +44,31 @@ function createMems() {
             scoreboard.text("You have " + newPoints + " points and have saved " + newMemories + " memories!")
 
         })
-
+        $('.regmemory').each(function(i) {
+            var top = $(this).css('top');
+            $(this).css('top')
+            if (top === '600px') {
+                scoreboard = $('.points')
+            splitBoard = scoreboard.text().split(' ');
+            oldPoints = parseInt(splitBoard[2])
+            newPoints = oldPoints - 20
+            scoreboard.text("You have " + newPoints + " points and have saved " + newMemories + " memories!")
+            $(this).remove();
+                return;
+            } else {}
+        });
 
     }, 1000)
 }
 
 
-
-
 function createCoreMems() {
-    setInterval(function() {
+    coreIntervalId = setInterval(function() {
         coremem = $('<div class="corememory"></div>')
         body.append(coremem);
         coremem.css("left", Math.random() * window.innerWidth);
         coremem.animate({
-            top: '1000'
+            top: '600'
         }, 5000);
 
         coremem.dblclick(function() {
@@ -82,46 +84,26 @@ function createCoreMems() {
     }, 10000)
 }
 
-
-
-// ask someone about this!!!!
-
-//  setInterval(function() {$('.regmemory').each(function(i){
-//               var top = $(this).css('top');
-//              $(this).css('top')
-//           if (top === '1000px'){
-//           console.log('you did it!');
-//           start.on("click", function() {
-//     })
-//         }
-//           else {}
-//   });
-
-// }, 1)
-
-
-
-// $('.regmemory').each(function(i){
-//                 var top = $(this).css('top');
-//                $(this).css('top')
-//             if (top === '1000px'){
-//             console.log('you did it!');
-//           }
-//             else {}
-//     });
-
-
-// setInterval(function() {
-//      coremem = $('<div class="corememory"></div>')
-//      body.append(coremem);
-//      coremem.css("left", Math.random() * window.innerWidth);
-//      coremem.animate({
-//          top: '1000'
-//      }, 5000);
-
-//    var top = $('.regmemory').css('top');
-//     $('.regmemory').css('top')
-//     if (top === '1000px') {
-//         console.log('you did it!');
-//     } else {}
-// }
+function checkToLoose() {
+    core = $('.corememory')
+    var top = core.css('top');
+    core.css('top');
+    if (top === '600px') {
+        clearInterval(coreIntervalId);
+        clearInterval(memoryIntervalID);
+        $('.message_text').text('You Loose!')
+        clearInterval(looseID);
+        return;
+    }
+    if (newPoints < 0){
+         clearInterval(coreIntervalId);
+        clearInterval(memoryIntervalID);
+        $('.message_text').text('You Loose!')
+        clearInterval(looseID);
+        return;
+    }
+    else {}
+};
+looseID = setInterval(function() {
+    checkToLoose();
+}, 100)
