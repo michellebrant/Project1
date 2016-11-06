@@ -166,6 +166,7 @@ function checkToLooseorWin() {
     scoreboard = $('.points')
     splitBoard = scoreboard.text().split(' ');
     points = parseInt(splitBoard[2])
+    memories = parseInt(splitBoard[7])
     if (points < 0) {
         Anger();
         clearInterval(coreIntervalId);
@@ -176,23 +177,29 @@ function checkToLooseorWin() {
         return;
 
     }
-    if (points >=100 && points <110){
+    if (points >=100 && points <111){
+      $('.corememory').remove();
+      $('.regmemory').remove();
       clearInterval(coreIntervalId);
       clearInterval(memoryIntervalID);
       body.append(message);
-      $('.message_text').text('You Win! Level 2 starts in 3 seconds');
+      $('.message_text').text('You beat level 1! Level 2 starts in 3 seconds');
       setTimeout (startLevelTwo, 3000);
+      Anger();
+      Sad();
+      Joy();
+      Disgust();
       clearInterval(looseID);
       }
-     if (points >=200 && points <210){
+     if (points >=100 && memories > 11){
       clearInterval(coreIntervalId);
       clearInterval(memoryIntervalID);
       body.append(message);
-      $('.message_text').text('You Win! Level 3 starts in 3 seconds');
+      $('.message_text').text('You beat level 2! Level 3 starts in 3 seconds');
       setTimeout (startLevelThree, 3000);
       clearInterval(looseID2);
       }
-     if (points >=300){
+      if (points >=100 && memories > 21){
       clearInterval(coreIntervalId);
       clearInterval(memoryIntervalID);
       body.append(message);
@@ -211,10 +218,14 @@ function startLevelTwo(){
     $('#message').remove();
     start.remove();
     createMems();
+    scoreboard.text("You have 0 points and have saved " + newMemories + " memories!");
     looseID2 = setInterval(function() {
-      checkToLooseorWin()
-    },100);
+    checkToLooseorWin();
+}, 100)
+
 }
+
+
 
 function startLevelThree(){
     $('#message').remove();
