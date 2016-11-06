@@ -79,9 +79,10 @@ $('.rules').on("click", function() {
 start.on("click", function() {
     createMems();
     createCoreMems();
+    $('#message').remove();
+    start.remove();
     body.append('<div class="score"></div>')
-    $('.score').append('<p class = "points">You have 0 points and have saved 0 memories! </p>')
-
+    $('.score').append('<p class = "points">You have 0 points and have saved 0 memories! </p>');
 })
 
 function createMems() {
@@ -149,7 +150,7 @@ function createCoreMems() {
     }, 10000)
 }
 
-function checkToLoose() {
+function checkToLooseorWin() {
     core = $('.corememory')
     var top = core.css('top');
     core.css('top');
@@ -169,12 +170,57 @@ function checkToLoose() {
         Anger();
         clearInterval(coreIntervalId);
         clearInterval(memoryIntervalID);
+        body.append(message);
         $('.message_text').text('You Loose!')
         clearInterval(looseID);
         return;
 
-    } else {}
-};
+    }
+    if (points >=100 && points <110){
+      clearInterval(coreIntervalId);
+      clearInterval(memoryIntervalID);
+      body.append(message);
+      $('.message_text').text('You Win! Level 2 starts in 3 seconds');
+      setTimeout (startLevelTwo, 3000);
+      clearInterval(looseID);
+      }
+     if (points >=200 && points <210){
+      clearInterval(coreIntervalId);
+      clearInterval(memoryIntervalID);
+      body.append(message);
+      $('.message_text').text('You Win! Level 3 starts in 3 seconds');
+      setTimeout (startLevelThree, 3000);
+      clearInterval(looseID2);
+      }
+     if (points >=300){
+      clearInterval(coreIntervalId);
+      clearInterval(memoryIntervalID);
+      body.append(message);
+      $('.message_text').text('You Win!');
+      clearInterval(looseID3);
+      }
+
+      else {}
+    }
+;
 looseID = setInterval(function() {
-    checkToLoose();
+    checkToLooseorWin();
 }, 100)
+
+function startLevelTwo(){
+    $('#message').remove();
+    start.remove();
+    createMems();
+    looseID2 = setInterval(function() {
+      checkToLooseorWin()
+    },100);
+}
+
+function startLevelThree(){
+    $('#message').remove();
+    start.remove();
+    createMems();
+    looseID3 = setInterval(function() {
+      checkToLooseorWin()
+    },100);
+}
