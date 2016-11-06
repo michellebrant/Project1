@@ -7,7 +7,7 @@ In this web browser game based on Pixar's hit film Inside Out (2015), Riley's me
 
 As a player in the game, I wanted the user to play in order to interact with the memories, track their points, and ultimately win/loose. I began with setting out a wireframe from the game, pictured below:
 
-PUT THE WIREFRAME HERE
+![welcome page wireframe](https://github.com/michellebrant/Project1/blob/master/welcome_wireframe.png)
 
 ## Built With
 - HTML
