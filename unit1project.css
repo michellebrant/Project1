@@ -119,29 +119,57 @@ body{
 }
 
 #message{
-  position: absolute;
-  height: 100px;
+  height: 400px;
   width: 600px;
-  bottom: 20px;
-  left: 60px;
-  border-radius: 15px;
-  background-color: #efefef;
+  position: fixed;
+  top: 70%;
+  left: 50%;
+  margin-top: -200px;
+  margin-left: -300px;
+  background-color: #black;
   text-align: center;
+}
+
+.levelmessage{
+  height: 400px;
+  width: 600px;
+  position: fixed;
+  top: 70%;
+  left: 50%;
+  margin-top: -200px;
+  margin-left: -300px;
+  background-color: #black;
+  text-align: center;
+  font-size: 40px;
+  color: white;
+  font-family: 'Bangers', cursive;
 }
 
 .score{
   float: right;
   height: 200px;
-  width: 200px;
+  width: 400px;
   float: right;
   top: 10px;
   border-radius: 15px;
-  background-color: #efefef;
+  background-color: black;
+}
+
+.points{
   text-align: center;
+  color: white;
+  font-family: 'Bangers', cursive;
+  font-size: 40px;
+}
+
+.welcome{
+  color: white;
+  font-family: 'Bangers', cursive;
+  font-size: 40px;
 }
 p{
-  color: black;
-  font-family: "Helvetica", "Arial", sans;
+  font-family: 'Oswald', sans-serif;
+  color: white;
 }
 .regmemory{
   background-image: url(regmempurp.png);
@@ -174,15 +202,21 @@ p{
   margin-left: -275px;
 }
 
-.winnermessage{
-  position: absolute;
+.winnermessage {
   height: 300px;
   width: 550px;
-  position: absolute;
-  bottom: 375px;
+  margin-bottom: 350px;
   left: 50%;
-  margin-left: -275px;
-  border-radius: 15px;
-  background-color: #efefef;
+  background-color: #black;
   text-align: center;
+  font-size: 40px;
+  color: white;
+  font-family: 'Bangers', cursive;
+}
+
+.logo{
+  height: 300px;
+  width: 500px;
+  left: 50%;
+  margin-left: 300px;
 }
