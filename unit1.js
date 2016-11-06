@@ -276,16 +276,12 @@ function checkToWinLevelThree() {
         $('.winnermessage').append('<button id="restart">Play Again!</button>');
         restartbutton = $('#restart')
         restartbutton.on("click", function() {
-            $('.winnermessage').remove();
+        $('.winnermessage').remove();
         $('.winner').remove();
-        body.append('<div class="joy-1" id="JOY"></div>');
-        joy = $('.joy-1')
-        body.append('<div class="disgust-1" id="DISGUST"></div>');
-        disgust = $('.disgust-1')
-        body.append('<div class="sad-1" id="SAD"></div>');
-        sad = $('.sad-1');
-        body.append('<div class="anger-1" id="ANGER" ></div>');
-        anger = $('.anger-1');
+        body.append(joy);
+        body.append(disgust);
+        body.append(sad);
+        body.append(anger);
         body.append('<div class="score"></div>');
         $('.score').append('<p class = "points">You have 0 points and have saved 0 memories! </p>');
         startLevelOne();
