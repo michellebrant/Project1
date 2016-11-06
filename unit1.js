@@ -272,8 +272,24 @@ function checkToWinLevelThree() {
         clearInterval(coreIntervalId);
         clearInterval(memoryIntervalID);
         body.append('<div class="winnermessage"></div>');
-        $('.winnermessage').append('<p class="winnermessage">Congrats, you helped Riley save all her memories! Click below to play again!</p>');
-        // $('.winnermessage').append('<button>Play Again!</button>')
+        $('.winnermessage').append('<p class="winnermessagetext">Congrats, you helped Riley save all her memories! Click below to play again!</p>');
+        $('.winnermessage').append('<button id="restart">Play Again!</button>');
+        restartbutton = $('#restart')
+        restartbutton.on("click", function() {
+            $('.winnermessage').remove();
+        $('.winner').remove();
+        body.append('<div class="joy-1" id="JOY"></div>');
+        joy = $('.joy-1')
+        body.append('<div class="disgust-1" id="DISGUST"></div>');
+        disgust = $('.disgust-1')
+        body.append('<div class="sad-1" id="SAD"></div>');
+        sad = $('.sad-1');
+        body.append('<div class="anger-1" id="ANGER" ></div>');
+        anger = $('.anger-1');
+        body.append('<div class="score"></div>');
+        $('.score').append('<p class = "points">You have 0 points and have saved 0 memories! </p>');
+        startLevelOne();
+              })
         body.append('<img src="core.png" class="winner">');
         scoreboard.remove();
         $('.score').remove();
@@ -284,3 +300,6 @@ function checkToWinLevelThree() {
         clearInterval(winID3);
     }
 }
+
+
+
