@@ -31,4 +31,6 @@ Special thanks to:
 - DeviantArt user desithen for the images used for the memories (http://desithen.deviantart.com/art/yellow-orb-215705837, http://desithen.deviantart.com/art/purple-orb-241816039)
 - https://daneden.github.io/animate.css/ for the awesome CSS library 
 - The creators of Inside Out for the inspiration behind the game!
+- This source for the Inside Out logo: http://www.wallpapermade.com/images/wallpapers/originals/disney-pixar-inside-out-logo-wallpaper-4788.jpg
+- The CSS tricks site for the centering div trick: https://css-tricks.com/quick-css-trick-how-to-center-an-object-exactly-in-the-center/
 
