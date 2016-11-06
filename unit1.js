@@ -5,6 +5,68 @@ message = $('#message')
 message.append('<p class ="first">Welcome to Inside Out! Read the rules before you play!</p>');
 message.append('<button class="rules">Rules</button>');
 start = $('<button class="start">Start the Game!</button>')
+body.append('<div class="joy-1" id="JOY"></div>');
+joy = $('.joy-1')
+body.append('<div class="disgust-1" id="DISGUST"></div>');
+disgust = $('.disgust-1')
+body.append('<div class="sad-1" id="SAD"></div>');
+sad = $('.sad-1')
+body.append('<div class="anger-1" id="ANGER" ></div>');
+anger = $('.anger-1')
+
+function Anger() {
+    var counter = 0
+    angerInterval = setInterval(function() {
+        if (counter <= 7) {
+            counter = counter + 1
+            anger.attr('class', 'anger-' + counter)
+        }
+        if (counter >= 8) {
+            anger.attr('class', 'anger-1')
+        }
+    }, 250)
+}
+
+function Sad() {
+    var counter = 0
+    sadInterval = setInterval(function() {
+        if (counter <= 2) {
+            counter = counter + 1
+            sad.attr('class', 'sad-' + counter)
+        }
+        if (counter >= 3) {
+            sad.attr('class', 'sad-1')
+        }
+    }, 250)
+}
+
+
+function Disgust() {
+    var counter = 0
+    disgustInterval = setInterval(function() {
+        if (counter <= 2) {
+            counter = counter + 1
+            disgust.attr('class', 'disgust-' + counter)
+        }
+        if (counter >= 3) {
+            disgust.attr('class', 'disgust-1')
+        }
+    }, 250)
+}
+
+function Joy() {
+    var counter = 0
+    joyInterval = setInterval(function() {
+        if (counter <= 2) {
+            counter = counter + 1
+            joy.attr('class', 'joy-' + counter)
+        }
+        if (counter >= 3) {
+            joy.attr('class', 'joy-1')
+        }
+    }, 250)
+}
+
 
 
 $('.rules').on("click", function() {
@@ -41,19 +103,21 @@ function createMems() {
             newPoints = oldPoints + 10
             oldMemories = parseInt(splitBoard[7])
             newMemories = oldMemories + 1
-            scoreboard.text("You have " + newPoints + " points and have saved " + newMemories + " memories!")
+            scoreboard.text("You have " + newPoints + " points and have saved " + newMemories + " memories!");
 
         })
         $('.regmemory').each(function(i) {
             var top = $(this).css('top');
             $(this).css('top')
             if (top === '600px') {
+                Sad();
+                Disgust();
                 scoreboard = $('.points')
-            splitBoard = scoreboard.text().split(' ');
-            oldPoints = parseInt(splitBoard[2])
-            newPoints = oldPoints - 20
-            scoreboard.text("You have " + newPoints + " points and have saved " + newMemories + " memories!")
-            $(this).remove();
+                splitBoard = scoreboard.text().split(' ');
+                oldPoints = parseInt(splitBoard[2])
+                newPoints = oldPoints - 20
+                scoreboard.text("You have " + newPoints + " points and have saved " + newMemories + " memories!")
+                $(this).remove();
                 return;
             } else {}
         });
@@ -80,6 +144,7 @@ function createCoreMems() {
             oldMemories = parseInt(splitBoard[7])
             newMemories = oldMemories + 1
             scoreboard.text("You have " + newPoints + " points and have saved " + newMemories + " memories!")
+            Joy();
         })
     }, 10000)
 }
@@ -89,20 +154,26 @@ function checkToLoose() {
     var top = core.css('top');
     core.css('top');
     if (top === '600px') {
+        Anger();
         clearInterval(coreIntervalId);
         clearInterval(memoryIntervalID);
         $('.message_text').text('You Loose!')
         clearInterval(looseID);
         return;
+
     }
-    if (newPoints < 0){
-         clearInterval(coreIntervalId);
+    scoreboard = $('.points')
+    splitBoard = scoreboard.text().split(' ');
+    points = parseInt(splitBoard[2])
+    if (points < 0) {
+        Anger();
+        clearInterval(coreIntervalId);
         clearInterval(memoryIntervalID);
         $('.message_text').text('You Loose!')
         clearInterval(looseID);
         return;
-    }
-    else {}
+
+    } else {}
 };
 looseID = setInterval(function() {
     checkToLoose();

@@ -1,15 +1,121 @@
 body{
   background-color: black;
-
-
 }
 
-.insideout {
-width: 400px;
-height: 200px;
-position: absolute;
-margin-top: 500px;
-margin-left: 700px;
+.joy-1 {
+  background: url('sprite.png') no-repeat -14px -30px;
+  width: 60px;
+  height: 152px;
+}
+
+.joy-2 {
+  background: url('sprite.png') no-repeat -422px -66px;
+  width: 60px;
+  height: 116px;
+}
+
+.joy-3 {
+  background: url('sprite.png') no-repeat -830px -38px;
+  width: 58px;
+  height: 144px; }
+
+#JOY {
+  position: absolute;
+  margin-top: 540px;
+  margin-left: 700px;
+}
+.disgust-3 {
+  background: url('sprite.png') no-repeat -82px -70px;
+  width: 130px;
+  height: 112px;
+}
+
+.disgust-2 {
+  background: url('sprite.png') no-repeat -2542px -66px;
+  width: 138px;
+  height: 116px;
+}
+
+.disgust-1 {
+  background: url('sprite.png') no-repeat -3774px -28px;
+  width: 122px;
+  height: 154px; }
+
+#DISGUST {
+  position: absolute;
+  margin-top: 540px;
+  margin-left: 775px;
+}
+
+.sad-3 {
+  background: url('sprite.png') no-repeat -3506px -98px;
+  width: 60px;
+  height: 84px;
+}
+
+.sad-2 {
+  background: url('sprite.png') no-repeat -3094px -86px;
+  width: 64px;
+  height: 96px;
+}
+
+.sad-1 {
+  background: url('sprite.png') no-repeat -1044px -62px;
+  width: 62px;
+  height: 120px;
+}
+
+#SAD {
+  position: absolute;
+  margin-top: 570px;
+  margin-left: 920px;
+}
+
+.anger-8 {
+  background: url('sprite.png') no-repeat -2342px -132px;
+  width: 110px;
+  height: 50px;
+}
+.anger-7 {
+  background: url('sprite.png') no-repeat -2754px -122px;
+  width: 102px;
+  height: 60px;
+}
+.anger-6 {
+  background: url('sprite.png') no-repeat -294px -78px;
+  width: 102px;
+  height: 104px;
+}
+.anger-5 {
+  background: url('sprite.png') no-repeat -1934px -74px;
+  width: 102px;
+  height: 108px;
+}
+.anger-4 {
+  background: url('sprite.png') no-repeat -1522px -30px;
+  width: 106px;
+  height: 152px;
+}
+.anger-3 {
+  background: url('sprite.png') no-repeat -706px -34px;
+  width: 96px;
+  height: 148px;
+}
+.anger-2 {
+  background: url('sprite.png') no-repeat -3168px -20px;
+  width: 92px;
+  height: 162px;
+}
+.anger-1 {
+  background: url('sprite.png') no-repeat -1120px -12px;
+  width: 88px;
+  height: 170px;
+}
+
+#ANGER {
+  position: absolute;
+  margin-top: 520px;
+  margin-left: 1000px;
 }
 
 #message{
@@ -35,26 +141,27 @@ margin-left: 700px;
 }
 p{
   color: black;
-    font-family: "Helvetica", "Arial", sans;
+  font-family: "Helvetica", "Arial", sans;
 }
 .regmemory{
-background-image: url(regmempurp.png);
-padding: 10px;
-position: absolute;
-background-size: cover;
-background-position: center;
-width: 50px;
-height: 50px;
-background-repeat: no-repeat;
+  background-image: url(regmempurp.png);
+  padding: 10px;
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  width: 50px;
+  height: 50px;
+  background-repeat: no-repeat;
 }
 
 .corememory{
-background-image: url(coremem.png);
-padding: 10px;
-position: absolute;
-background-size: cover;
-background-position: center;
-width: 50px;
-height: 50px;
-background-repeat: no-repeat;
+  background-image: url(coremem.png);
+  padding: 10px;
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  width: 50px;
+  height: 50px;
+  background-repeat: no-repeat;
 }
+
