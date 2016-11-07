@@ -9,59 +9,30 @@ message.append('<button class="rules">Rules</button>');
 start = $('<button class="start">Start the Game!</button>')
 
 function Anger() {
-    var counter = 0
-    angerInterval = setInterval(function() {
-        if (counter <= 7) {
-            counter = counter + 1
-            anger.attr('class', 'anger-' + counter)
-        }
-        if (counter >= 8) {
-            anger.attr('class', 'anger-1')
-        }
+ angerID = setInterval(function() {
+      anger.toggleClass('anger-2');
     }, 250)
 }
 
 function Sad() {
-    var counter = 0
-    sadInterval = setInterval(function() {
-        if (counter <= 2) {
-            counter = counter + 1
-            sad.attr('class', 'sad-' + counter)
-        }
-        if (counter >= 3) {
-            sad.attr('class', 'sad-1')
-        }
+ sadID = setInterval(function() {
+      sad.toggleClass('sad-2');
     }, 250)
 }
 
 
 function Disgust() {
-    var counter = 0
-    disgustInterval = setInterval(function() {
-        if (counter <= 2) {
-            counter = counter + 1
-            disgust.attr('class', 'disgust-' + counter)
-        }
-        if (counter >= 3) {
-            disgust.attr('class', 'disgust-1')
-        }
+ disgustID = setInterval(function() {
+      disgust.toggleClass('disgust-2');
     }, 250)
 }
 
 function Joy() {
-    var counter = 0
-    joyInterval = setInterval(function() {
-        if (counter <= 2) {
-            counter = counter + 1
-            joy.attr('class', 'joy-' + counter)
-        }
-        if (counter >= 3) {
-            joy.attr('class', 'joy-1')
-        }
+   joyID = setInterval(function() {
+      joy.toggleClass('joy-2');
     }, 250)
+
 }
-
-
 
 $('.rules').on("click", function() {
     $('.first').remove();
@@ -91,67 +62,60 @@ start.on("click", function() {
 
 function createMems() {
 
-    memoryIntervalID = setInterval(function() {
-        regmemory = $('<div class="regmemory"></div>')
-        body.append(regmemory);
-        regmemory.css("left", Math.random() * window.innerWidth);
-        regmemory.animate({
-            top: '600'
+    regmemory = $('<div class="regmemory"></div>')
+    body.append(regmemory);
+    regmemory.css("left", Math.random() * window.innerWidth);
+    regmemory.animate({
+        top: '600'
 
-        }, 5000);
+    }, 5000);
 
-        regmemory.click(function() {
-            $(this).remove();
+    regmemory.click(function() {
+        $(this).remove();
+        scoreboard = $('.points')
+        splitBoard = scoreboard.text().split(' ');
+        oldPoints = parseInt(splitBoard[2])
+        newPoints = oldPoints + 10
+        oldMemories = parseInt(splitBoard[7])
+        newMemories = oldMemories + 1
+        scoreboard.text("You have " + newPoints + " points and have saved " + newMemories + " memories!");
+
+    })
+    $('.regmemory').each(function(i) {
+        var top = $(this).css('top');
+        $(this).css('top')
+        if (top === '600px') {
             scoreboard = $('.points')
             splitBoard = scoreboard.text().split(' ');
             oldPoints = parseInt(splitBoard[2])
-            newPoints = oldPoints + 10
-            oldMemories = parseInt(splitBoard[7])
-            newMemories = oldMemories + 1
-            scoreboard.text("You have " + newPoints + " points and have saved " + newMemories + " memories!");
-
-        })
-        $('.regmemory').each(function(i) {
-            var top = $(this).css('top');
-            $(this).css('top')
-            if (top === '600px') {
-                Sad();
-                Disgust();
-                scoreboard = $('.points')
-                splitBoard = scoreboard.text().split(' ');
-                oldPoints = parseInt(splitBoard[2])
-                newPoints = oldPoints - 20
-                scoreboard.text("You have " + newPoints + " points and have saved " + newMemories + " memories!")
-                $(this).remove();
-                return;
-            } else {}
-        });
-
-    }, 1000)
+            newPoints = oldPoints - 20;
+            newMemories = splitBoard[7]
+            scoreboard.text("You have " + newPoints + " points and have saved " + newMemories + " memories!")
+            $(this).remove();
+            return;
+        } else {}
+    });
 }
 
 
 function createCoreMems() {
-    coreIntervalId = setInterval(function() {
-        coremem = $('<div class="corememory"></div>')
-        body.append(coremem);
-        coremem.css("left", Math.random() * window.innerWidth);
-        coremem.animate({
-            top: '600'
-        }, 5000);
+    coremem = $('<div class="corememory"></div>')
+    body.append(coremem);
+    coremem.css("left", Math.random() * window.innerWidth);
+    coremem.animate({
+        top: '600'
+    }, 5000);
 
-        coremem.dblclick(function() {
-            $(this).remove();
-            scoreboard = $('.points')
-            splitBoard = scoreboard.text().split(' ');
-            oldPoints = parseInt(splitBoard[2])
-            newPoints = oldPoints + 20
-            oldMemories = parseInt(splitBoard[7])
-            newMemories = oldMemories + 1
-            scoreboard.text("You have " + newPoints + " points and have saved " + newMemories + " memories!")
-            Joy();
-        })
-    }, 10000)
+    coremem.dblclick(function() {
+        $(this).remove();
+        scoreboard = $('.points')
+        splitBoard = scoreboard.text().split(' ');
+        oldPoints = parseInt(splitBoard[2])
+        newPoints = oldPoints + 20
+        oldMemories = parseInt(splitBoard[7])
+        newMemories = oldMemories + 1
+        scoreboard.text("You have " + newPoints + " points and have saved " + newMemories + " memories!")
+    })
 }
 
 function checkToLoose() {
@@ -160,26 +124,93 @@ function checkToLoose() {
     core.css('top');
     if (top === '600px') {
         Anger();
-        clearInterval(coreIntervalId);
-        clearInterval(memoryIntervalID);
-        $('.message_text').text('You Loose!')
-        clearInterval(looseID1);
-        return;
+        Joy();
+        Disgust();
+        Sad();
+        if (typeof memoryID1 === "number") {
+            clearInterval(memoryID1);
+            clearInterval(corememoryID1);
+        }
+        if (typeof memoryID2 === "number") {
+            clearInterval(memoryID2);
+            clearInterval(corememoryID2);
+        }
+        if (typeof memoryID3 === "number") {
+            clearInterval(memoryID3);
+            clearInterval(corememoryID3);
+        }
+        $('.corememory').remove();
+        $('.regmemory').remove();
 
+        body.append('<div class="loosermessage"></div>');
+        $('.loosermessage').append('<p class="loosermessagetext"></p>');
+        $('.loosermessagetext').text('You lost! Press below to play again!')
+        $('.loosermessage').append('<button id="restart">Play Again!</button>');
+        restartbutton = $('#restart')
+        $('.score').remove();
+        restartbutton.on("click", function() {
+            $('.loosermessage').remove();
+            clearInterval(angerID);
+            clearInterval(joyID);
+            clearInterval(disgustID);
+            clearInterval(sadID);
+            restartbutton.remove();
+            body.append(joy);
+            body.append(disgust);
+            body.append(sad);
+            body.append(anger);
+            body.append('<div class="score"></div>');
+            $('.score').append('<p class = "points">You have 0 points and have saved 0 memories! </p>');
+            startLevelOne();
+        })
     }
     scoreboard = $('.points')
     splitBoard = scoreboard.text().split(' ');
     points = parseInt(splitBoard[2])
     memories = parseInt(splitBoard[7])
     if (points < 0) {
+        if (typeof memoryID1 === "number") {
+            clearInterval(memoryID1);
+            clearInterval(corememoryID1);
+        }
+        if (typeof memoryID2 === "number") {
+            clearInterval(memoryID2);
+            clearInterval(corememoryID2);
+        }
+        if (typeof memoryID3 === "number") {
+            clearInterval(memoryID3);
+            clearInterval(corememoryID3);
+        }
         Anger();
-        clearInterval(coreIntervalId);
-        clearInterval(memoryIntervalID);
-        body.append(message);
-        $('.message_text').text('You Loose!')
-        clearInterval(looseID1);
-        return;
+        Sad();
+        Joy();
+        Disgust();
+        $('.corememory').remove();
+        $('.regmemory').remove();
+        clearInterval(memoryID1);
+        clearInterval(corememoryID1);
+        body.append('<div class="loosermessage"></div>');
+        $('.loosermessage').append('<p class="loosermessagetext"></p>');
+        $('.loosermessagetext').text('You lost! Press below to play again!')
+        $('.loosermessage').append('<button id="restart">Play Again!</button>');
+        restartbutton = $('#restart');
+        $('.score').remove();
+        restartbutton.on("click", function() {
+            clearInterval(angerID);
+            clearInterval(joyID);
+            clearInterval(disgustID);
+            clearInterval(sadID);
 
+            $('.loosermessage').remove();
+            restartbutton.remove();
+            body.append(joy);
+            body.append(disgust);
+            body.append(sad);
+            body.append(anger);
+            body.append('<div class="score"></div>');
+            $('.score').append('<p class = "points">You have 0 points and have saved 0 memories! </p>');
+            startLevelOne();
+        })
     }
 
 };
@@ -188,8 +219,12 @@ looseID1 = setInterval(function() {
 }, 100)
 
 function startLevelOne() {
-    createMems();
-    createCoreMems();
+    memoryID1 = setInterval(function() {
+        createMems();
+    }, 1000);
+    corememoryID1 = setInterval(function() {
+        createCoreMems();
+    }, 5000);
     $('#message').remove();
     start.remove();
 
@@ -200,10 +235,10 @@ function checkToWinLevelOne() {
     splitBoard = scoreboard.text().split(' ');
     points = parseInt(splitBoard[2])
     if (points >= 100) {
+        clearInterval(memoryID1);
+        clearInterval(corememoryID1);
         $('.corememory').remove();
         $('.regmemory').remove();
-        clearInterval(coreIntervalId);
-        clearInterval(memoryIntervalID);
         body.append('<div class="levelmessage"></div');
         $('.levelmessage').append('<p class="levelmessage">You beat level 1! Level 2 starts in 3 seconds</p>');
         Anger();
@@ -219,11 +254,20 @@ winID1 = setInterval(function() {
 }, 100)
 
 function startLevelTwo() {
+              clearInterval(angerID);
+            clearInterval(joyID);
+            clearInterval(disgustID);
+            clearInterval(sadID);
     $('#message').remove();
     $('.levelmessage').remove();
-    createMems();
+    memoryID2 = setInterval(function() {
+        createMems();
+    }, 1000);
+    corememoryID2 = setInterval(function() {
+        createCoreMems();
+    }, 2000);
     scoreboard.text("You have 0 points and have saved " + newMemories + " memories!");
-    createCoreMems();
+    secondcore = createCoreMems();
     winID2 = setInterval(function() {
         checkToWinLevelTwo();
     }, 100)
@@ -235,10 +279,11 @@ function checkToWinLevelTwo() {
     splitBoard = scoreboard.text().split(' ');
     points = parseInt(splitBoard[2])
     if (points >= 100) {
+        clearInterval(memoryID2);
+        clearInterval(corememoryID2);
+        clearInterval(secondcore);
         $('.corememory').remove();
         $('.regmemory').remove();
-        clearInterval(coreIntervalId);
-        clearInterval(memoryIntervalID);
         body.append('<div class="levelmessage"></div');
         $('.levelmessage').append('<p class="levelmessage">You beat level 2! Level 3 starts in 3 seconds</p>');
         setTimeout(startLevelThree, 3000);
@@ -251,9 +296,18 @@ function checkToWinLevelTwo() {
 }
 
 function startLevelThree() {
+              clearInterval(angerID);
+            clearInterval(joyID);
+            clearInterval(disgustID);
+            clearInterval(sadID);
     $('#message').remove();
     $('.levelmessage').remove();
-    createMems();
+    memoryID3 = setInterval(function() {
+        createMems();
+    }, 900);
+    corememoryID3 = setInterval(function() {
+        createCoreMems();
+    }, 1900);
     scoreboard.text("You have 0 points and have saved " + newMemories + " memories!");
     createCoreMems();
     winID3 = setInterval(function() {
@@ -267,25 +321,30 @@ function checkToWinLevelThree() {
     splitBoard = scoreboard.text().split(' ');
     points = parseInt(splitBoard[2])
     if (points >= 100) {
+        clearInterval(corememoryID3);
+        clearInterval(memoryID3);
         $('.corememory').remove();
         $('.regmemory').remove();
-        clearInterval(coreIntervalId);
-        clearInterval(memoryIntervalID);
+                Anger();
+        Sad();
+        Joy();
+        Disgust();
         body.append('<div class="winnermessage"></div>');
-        $('.winnermessage').append('<p class="winnermessagetext">Congrats, you helped Riley save all her memories! Click below to play again!</p>');
+        $('.winnermessage').append('<p class="winnermessagetext"></p>');
+        $('.winnermessagetext').text('Congrats, you helped Riley save ' + newMemories + ' of her memories! Click below to play again!')
         $('.winnermessage').append('<button id="restart">Play Again!</button>');
         restartbutton = $('#restart')
         restartbutton.on("click", function() {
-        $('.winnermessage').remove();
-        $('.winner').remove();
-        body.append(joy);
-        body.append(disgust);
-        body.append(sad);
-        body.append(anger);
-        body.append('<div class="score"></div>');
-        $('.score').append('<p class = "points">You have 0 points and have saved 0 memories! </p>');
-        startLevelOne();
-              })
+            $('.winnermessage').remove();
+            $('.winner').remove();
+            body.append(joy);
+            body.append(disgust);
+            body.append(sad);
+            body.append(anger);
+            body.append('<div class="score"></div>');
+            $('.score').append('<p class = "points">You have 0 points and have saved 0 memories! </p>');
+            startLevelOne();
+        })
         body.append('<img src="core.png" class="winner">');
         scoreboard.remove();
         $('.score').remove();
@@ -296,6 +355,3 @@ function checkToWinLevelThree() {
         clearInterval(winID3);
     }
 }
-
-
-
