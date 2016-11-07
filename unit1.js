@@ -9,27 +9,27 @@ message.append('<button class="rules">Rules</button>');
 start = $('<button class="start">Start the Game!</button>')
 
 function Anger() {
- angerID = setInterval(function() {
-      anger.toggleClass('anger-2');
+    angerID = setInterval(function() {
+        anger.toggleClass('anger-2');
     }, 250)
 }
 
 function Sad() {
- sadID = setInterval(function() {
-      sad.toggleClass('sad-2');
+    sadID = setInterval(function() {
+        sad.toggleClass('sad-2');
     }, 250)
 }
 
 
 function Disgust() {
- disgustID = setInterval(function() {
-      disgust.toggleClass('disgust-2');
+    disgustID = setInterval(function() {
+        disgust.toggleClass('disgust-2');
     }, 250)
 }
 
 function Joy() {
-   joyID = setInterval(function() {
-      joy.toggleClass('joy-2');
+    joyID = setInterval(function() {
+        joy.toggleClass('joy-2');
     }, 250)
 
 }
@@ -227,6 +227,9 @@ function startLevelOne() {
     }, 5000);
     $('#message').remove();
     start.remove();
+    winID1 = setInterval(function() {
+        checkToWinLevelOne();
+    }, 100)
 
 }
 
@@ -249,15 +252,13 @@ function checkToWinLevelOne() {
         setTimeout(startLevelTwo, 3000);
     }
 }
-winID1 = setInterval(function() {
-    checkToWinLevelOne();
-}, 100)
+
 
 function startLevelTwo() {
-              clearInterval(angerID);
-            clearInterval(joyID);
-            clearInterval(disgustID);
-            clearInterval(sadID);
+    clearInterval(angerID);
+    clearInterval(joyID);
+    clearInterval(disgustID);
+    clearInterval(sadID);
     $('#message').remove();
     $('.levelmessage').remove();
     memoryID2 = setInterval(function() {
@@ -296,10 +297,10 @@ function checkToWinLevelTwo() {
 }
 
 function startLevelThree() {
-              clearInterval(angerID);
-            clearInterval(joyID);
-            clearInterval(disgustID);
-            clearInterval(sadID);
+    clearInterval(angerID);
+    clearInterval(joyID);
+    clearInterval(disgustID);
+    clearInterval(sadID);
     $('#message').remove();
     $('.levelmessage').remove();
     memoryID3 = setInterval(function() {
@@ -325,7 +326,7 @@ function checkToWinLevelThree() {
         clearInterval(memoryID3);
         $('.corememory').remove();
         $('.regmemory').remove();
-                Anger();
+        Anger();
         Sad();
         Joy();
         Disgust();
@@ -333,6 +334,14 @@ function checkToWinLevelThree() {
         $('.winnermessage').append('<p class="winnermessagetext"></p>');
         $('.winnermessagetext').text('Congrats, you helped Riley save ' + newMemories + ' of her memories! Click below to play again!')
         $('.winnermessage').append('<button id="restart">Play Again!</button>');
+        body.append('<img src="core.png" class="winner">');
+        scoreboard.remove();
+        $('.score').remove();
+        anger.remove();
+        sad.remove();
+        joy.remove();
+        disgust.remove();
+        clearInterval(winID3);
         restartbutton = $('#restart')
         restartbutton.on("click", function() {
             $('.winnermessage').remove();
@@ -344,14 +353,10 @@ function checkToWinLevelThree() {
             body.append('<div class="score"></div>');
             $('.score').append('<p class = "points">You have 0 points and have saved 0 memories! </p>');
             startLevelOne();
+            clearInterval(angerID);
+            clearInterval(joyID);
+            clearInterval(disgustID);
+            clearInterval(sadID);
         })
-        body.append('<img src="core.png" class="winner">');
-        scoreboard.remove();
-        $('.score').remove();
-        anger.remove();
-        sad.remove();
-        joy.remove();
-        disgust.remove();
-        clearInterval(winID3);
     }
 }
