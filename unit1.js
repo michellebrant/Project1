@@ -8,6 +8,7 @@ message.append('<p class="welcome">Welcome to Inside Out : Save Riley\'s Memorie
 message.append('<button class="rules">Rules</button>');
 start = $('<button class="start">Start the Game!</button>')
 
+//these functions animate the sprites when called
 function Anger() {
     angerID = setInterval(function() {
         anger.toggleClass('anger-2');
@@ -34,6 +35,7 @@ function Joy() {
 
 }
 
+//this creates the rules page when appropriate button is clicked
 $('.rules').on("click", function() {
     $('.first').remove();
     $('.rules').remove();
@@ -44,6 +46,7 @@ $('.rules').on("click", function() {
     message.append(start)
 })
 
+//creates basic wireframe of game when button is click, calls function for level one to start the game
 start.on("click", function() {
     body.append('<div class="joy-1" id="JOY"></div>');
     joy = $('.joy-1')
@@ -60,6 +63,7 @@ start.on("click", function() {
 
 })
 
+//function that creates regular memories across random poitns on the screen; animates memories to move down screen
 function createMems() {
 
     regmemory = $('<div class="regmemory"></div>')
@@ -69,7 +73,7 @@ function createMems() {
         top: '600'
 
     }, 5000);
-
+//click function to get rid of memories
     regmemory.click(function() {
         $(this).remove();
         scoreboard = $('.points')
@@ -81,6 +85,7 @@ function createMems() {
         scoreboard.text("You have " + newPoints + " points and have saved " + newMemories + " memories!");
 
     })
+    //function to remove points if they reach bottom of screen
     $('.regmemory').each(function(i) {
         var top = $(this).css('top');
         $(this).css('top')
@@ -97,7 +102,7 @@ function createMems() {
     });
 }
 
-
+//function that creates core memories across random poitns on the screen; animates memories to move down screen
 function createCoreMems() {
     coremem = $('<div class="corememory"></div>')
     body.append(coremem);
@@ -105,7 +110,7 @@ function createCoreMems() {
     coremem.animate({
         top: '600'
     }, 5000);
-
+//click function to get rid of memories
     coremem.dblclick(function() {
         $(this).remove();
         scoreboard = $('.points')
@@ -118,10 +123,12 @@ function createCoreMems() {
     })
 }
 
+//function to check loose properties
 function checkToLoose() {
     core = $('.corememory')
     var top = core.css('top');
     core.css('top');
+    //checks if core memory reaches bottom of screen, stops game and allows restart
     if (top === '600px') {
         Anger();
         Joy();
@@ -148,6 +155,7 @@ function checkToLoose() {
         $('.loosermessage').append('<button id="restart">Play Again!</button>');
         restartbutton = $('#restart')
         $('.score').remove();
+        //click function to restart game
         restartbutton.on("click", function() {
             $('.loosermessage').remove();
             clearInterval(angerID);
@@ -164,6 +172,7 @@ function checkToLoose() {
             startLevelOne();
         })
     }
+    //loose function if score is negative
     scoreboard = $('.points')
     splitBoard = scoreboard.text().split(' ');
     points = parseInt(splitBoard[2])
@@ -195,6 +204,7 @@ function checkToLoose() {
         $('.loosermessage').append('<button id="restart">Play Again!</button>');
         restartbutton = $('#restart');
         $('.score').remove();
+        //click function to restart game
         restartbutton.on("click", function() {
             clearInterval(angerID);
             clearInterval(joyID);
@@ -214,10 +224,12 @@ function checkToLoose() {
     }
 
 };
+//check the loosing conditions every milisecond
 looseID1 = setInterval(function() {
     checkToLoose();
 }, 100)
 
+//begins game
 function startLevelOne() {
     memoryID1 = setInterval(function() {
         createMems();
@@ -233,6 +245,7 @@ function startLevelOne() {
 
 }
 
+//function to win level one
 function checkToWinLevelOne() {
     scoreboard = $('.points')
     splitBoard = scoreboard.text().split(' ');
@@ -254,6 +267,7 @@ function checkToWinLevelOne() {
 }
 
 
+//starts level 2
 function startLevelTwo() {
     clearInterval(angerID);
     clearInterval(joyID);
@@ -275,6 +289,7 @@ function startLevelTwo() {
 
 }
 
+//checks and allows to win level 2
 function checkToWinLevelTwo() {
     scoreboard = $('.points')
     splitBoard = scoreboard.text().split(' ');
@@ -296,6 +311,7 @@ function checkToWinLevelTwo() {
     }
 }
 
+//starts level 3
 function startLevelThree() {
     clearInterval(angerID);
     clearInterval(joyID);
@@ -317,6 +333,7 @@ function startLevelThree() {
 
 }
 
+//checks if you won level 3, allows you to restart the game
 function checkToWinLevelThree() {
     scoreboard = $('.points')
     splitBoard = scoreboard.text().split(' ');
@@ -342,6 +359,7 @@ function checkToWinLevelThree() {
         joy.remove();
         disgust.remove();
         clearInterval(winID3);
+        //click function to restart the game
         restartbutton = $('#restart')
         restartbutton.on("click", function() {
             $('.winnermessage').remove();
