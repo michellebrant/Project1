@@ -17,7 +17,9 @@ As a player in the game, I wanted the user to play in order to interact with the
 ## User Story
 The target users for this game are mainly children, but also all ages of Inside Out fans. 
 
-As a user, I can play the game and eventually beat the 3 levels and win.
+As a user, I can play the game and eventually beat the 3 levels and win. 
+
+The minimal viable product for this game was a simple click to disappear game, with 1 level and a win/loose clause.
 
 ## Built With
 - HTML
