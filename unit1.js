@@ -39,8 +39,8 @@ $('.rules').on("click", function() {
     $('.rules').remove();
     $(".welcome").remove();
     message.append('<p>In this game based on Pixar\'s hit film Inside Out (2015), Riley\'s memories are in danger of being lost forever in the Memory Dump. Help Riley save her memories or risk loosing her personality islands forever.</p>');
-    message.append('<p>Once the game begins, Riley\'s memories will fall from the top of the screen. Purple memories signal regular memories. In order to save these memories click the memory orb, and gain 10 points. These memories will not cause a total removal of a personality island, but will dock 20 points from your score. Fall below a score of 0 and you loose!</p>');
-    message.append('<p>In addition to regular memories, golden core memory orbs will be falling sporadically. These are the most important memories Riley has, and make up her personality. In order to save these, you must double click the orb (you will gain 20 points). Miss one, and Riley looses a personality island and you automatically loose the game.</p>')
+    message.append('<p>Once the game begins, Riley\'s memories will fall from the top of the screen. Purple memories signal regular memories. In order to save these memories click the memory orb, and gain 10 poinnts; miss one and loose 20 points. Fall below a score of 0 and you loose, or get 100 points to move to the next level! Beat all 3 levels to win the game.</p>');
+    message.append('<p>In addition to regular memories, golden core memory orbs will be falling sporadically. These are the most important memories Riley has, and make up her personality. In order to save these, you must double click the orb (you will gain 20 points). Miss one and you automatically loose the game.</p>')
     message.append(start)
 })
 
