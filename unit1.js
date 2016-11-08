@@ -135,16 +135,16 @@ function checkToLoose() {
         Disgust();
         Sad();
         if (typeof memoryID1 === "number") {
-            clearInterval(memoryID1);
-            clearInterval(corememoryID1);
+            window.clearInterval(memoryID1);
+            window.clearInterval(corememoryID1);
         }
         if (typeof memoryID2 === "number") {
-            clearInterval(memoryID2);
-            clearInterval(corememoryID2);
+            window.clearInterval(memoryID2);
+            window.clearInterval(corememoryID2);
         }
         if (typeof memoryID3 === "number") {
-            clearInterval(memoryID3);
-            clearInterval(corememoryID3);
+            window.clearInterval(memoryID3);
+            window.clearInterval(corememoryID3);
         }
         $('.corememory').remove();
         $('.regmemory').remove();
@@ -157,19 +157,7 @@ function checkToLoose() {
         $('.score').remove();
         //click function to restart game
         restartbutton.on("click", function() {
-            $('.loosermessage').remove();
-            clearInterval(angerID);
-            clearInterval(joyID);
-            clearInterval(disgustID);
-            clearInterval(sadID);
-            restartbutton.remove();
-            body.append(joy);
-            body.append(disgust);
-            body.append(sad);
-            body.append(anger);
-            body.append('<div class="score"></div>');
-            $('.score').append('<p class = "points">You have 0 points and have saved 0 memories! </p>');
-            startLevelOne();
+            location.reload()
         })
     }
     //loose function if score is negative
@@ -179,16 +167,16 @@ function checkToLoose() {
     memories = parseInt(splitBoard[7])
     if (points < 0) {
         if (typeof memoryID1 === "number") {
-            clearInterval(memoryID1);
-            clearInterval(corememoryID1);
+            window.clearInterval(memoryID1);
+            window.clearInterval(corememoryID1);
         }
         if (typeof memoryID2 === "number") {
-            clearInterval(memoryID2);
-            clearInterval(corememoryID2);
+            window.clearInterval(memoryID2);
+            window.clearInterval(corememoryID2);
         }
         if (typeof memoryID3 === "number") {
-            clearInterval(memoryID3);
-            clearInterval(corememoryID3);
+            window.clearInterval(memoryID3);
+            window.clearInterval(corememoryID3);
         }
         Anger();
         Sad();
@@ -196,8 +184,8 @@ function checkToLoose() {
         Disgust();
         $('.corememory').remove();
         $('.regmemory').remove();
-        clearInterval(memoryID1);
-        clearInterval(corememoryID1);
+        window.clearInterval(memoryID1);
+        window.clearInterval(corememoryID1);
         body.append('<div class="loosermessage"></div>');
         $('.loosermessage').append('<p class="loosermessagetext"></p>');
         $('.loosermessagetext').text('You lost! Press below to play again!')
@@ -206,20 +194,7 @@ function checkToLoose() {
         $('.score').remove();
         //click function to restart game
         restartbutton.on("click", function() {
-            clearInterval(angerID);
-            clearInterval(joyID);
-            clearInterval(disgustID);
-            clearInterval(sadID);
-
-            $('.loosermessage').remove();
-            restartbutton.remove();
-            body.append(joy);
-            body.append(disgust);
-            body.append(sad);
-            body.append(anger);
-            body.append('<div class="score"></div>');
-            $('.score').append('<p class = "points">You have 0 points and have saved 0 memories! </p>');
-            startLevelOne();
+        location.reload()
         })
     }
 
@@ -251,8 +226,8 @@ function checkToWinLevelOne() {
     splitBoard = scoreboard.text().split(' ');
     points = parseInt(splitBoard[2])
     if (points >= 100) {
-        clearInterval(memoryID1);
-        clearInterval(corememoryID1);
+        window.clearInterval(memoryID1);
+        window.clearInterval(corememoryID1);
         $('.corememory').remove();
         $('.regmemory').remove();
         body.append('<div class="levelmessage"></div');
@@ -261,7 +236,7 @@ function checkToWinLevelOne() {
         Sad();
         Joy();
         Disgust();
-        clearInterval(winID1);
+        window.window.clearInterval(winID1);
         setTimeout(startLevelTwo, 3000);
     }
 }
@@ -269,10 +244,10 @@ function checkToWinLevelOne() {
 
 //starts level 2
 function startLevelTwo() {
-    clearInterval(angerID);
-    clearInterval(joyID);
-    clearInterval(disgustID);
-    clearInterval(sadID);
+    window.clearInterval(angerID);
+    window.clearInterval(joyID);
+    window.clearInterval(disgustID);
+    window.clearInterval(sadID);
     $('#message').remove();
     $('.levelmessage').remove();
     memoryID2 = setInterval(function() {
@@ -295,9 +270,9 @@ function checkToWinLevelTwo() {
     splitBoard = scoreboard.text().split(' ');
     points = parseInt(splitBoard[2])
     if (points >= 100) {
-        clearInterval(memoryID2);
-        clearInterval(corememoryID2);
-        clearInterval(secondcore);
+        window.clearInterval(memoryID2);
+        window.clearInterval(corememoryID2);
+        window.clearInterval(secondcore);
         $('.corememory').remove();
         $('.regmemory').remove();
         body.append('<div class="levelmessage"></div');
@@ -307,16 +282,16 @@ function checkToWinLevelTwo() {
         Sad();
         Joy();
         Disgust();
-        clearInterval(winID2);
+        window.clearInterval(winID2);
     }
 }
 
 //starts level 3
 function startLevelThree() {
-    clearInterval(angerID);
-    clearInterval(joyID);
-    clearInterval(disgustID);
-    clearInterval(sadID);
+    window.clearInterval(angerID);
+    window.clearInterval(joyID);
+    window.clearInterval(disgustID);
+    window.clearInterval(sadID);
     $('#message').remove();
     $('.levelmessage').remove();
     memoryID3 = setInterval(function() {
@@ -339,8 +314,8 @@ function checkToWinLevelThree() {
     splitBoard = scoreboard.text().split(' ');
     points = parseInt(splitBoard[2])
     if (points >= 100) {
-        clearInterval(corememoryID3);
-        clearInterval(memoryID3);
+        window.clearInterval(corememoryID3);
+        window.clearInterval(memoryID3);
         $('.corememory').remove();
         $('.regmemory').remove();
         Anger();
@@ -358,23 +333,11 @@ function checkToWinLevelThree() {
         sad.remove();
         joy.remove();
         disgust.remove();
-        clearInterval(winID3);
+        window.clearInterval(winID3);
         //click function to restart the game
         restartbutton = $('#restart')
         restartbutton.on("click", function() {
-            $('.winnermessage').remove();
-            $('.winner').remove();
-            body.append(joy);
-            body.append(disgust);
-            body.append(sad);
-            body.append(anger);
-            body.append('<div class="score"></div>');
-            $('.score').append('<p class = "points">You have 0 points and have saved 0 memories! </p>');
-            startLevelOne();
-            clearInterval(angerID);
-            clearInterval(joyID);
-            clearInterval(disgustID);
-            clearInterval(sadID);
+            location.reload()
         })
     }
 }
